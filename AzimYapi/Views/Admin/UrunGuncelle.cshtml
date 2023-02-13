@@ -1,0 +1,53 @@
+﻿@model AzimYapi.Models.UrunlerModel.Urun
+@{
+    ViewBag.Title = "UrunGuncelle";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<section class="categories">
+    <div class="container">
+        <div class="col-md-6">
+            @if (TempData["UrunGuncellemeBasarili"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["UrunGuncellemeBasarili"]
+                </div>
+            }
+            @if (TempData["UrunGuncellemeBasarisiz"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["UrunGuncellemeBasarisiz"]
+                </div>
+            }
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @using (Html.BeginForm("UrunGuncelle", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <label>Ürün Adı</label>
+                    <input type="text" name="UrunAdi" value="@Model.UrunAdi" placeholder="@Model.UrunAdi" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Ürün Fiyatı</label>
+                    <input type="number" name="fiyat" value="@Model.fiyat" placeholder="@Model.fiyat" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Ürün Stok Adedi</label>
+                    <input type="number" name="stok" value="@Model.stok" placeholder="@Model.stok" class="form-control" />
+                </div>
+                <div class="col-lg-6">
+                    <label>Resim Değiştir</label>
+                    <div class="categories__item set-bg" data-setbg="/resimler/@Model.urunGorselAdi">
+                    </div><br>
+                    <input type="file" name="urunGorselAdi" />
+                </div>
+                <br />
+                
+
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+            }
+
+        </div>
+    </div>
+</section>
+
+

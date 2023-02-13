@@ -1,0 +1,87 @@
+﻿@model IEnumerable<AzimYapi.Models.GorselModel.Gorsel>
+@{
+    ViewBag.Title = "Karosel";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<section class="categories">
+    <div class="container">
+        <div class="col-md-6">
+            @if (TempData["GorselEklemeBasarili"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["GorselEklemeBasarili"]
+                </div>
+            }
+            @if (TempData["GorselEklemeBasarisiz"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["GorselEklemeBasarisiz"]
+                </div>
+            }
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @using (Html.BeginForm("GorselEkle", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="hidden" name="GorselTuru" value="karosel" />
+                <div class="form-group">
+                    <label>Karosel için resim ekleyiniz</label><br />
+                    <input type="file" name="GorselAdi" />
+                </div>
+                <button type="submit" class="btn btn-primary">Ekle</button>
+            }
+
+        </div>
+    </div>
+</section>
+<br />
+<br />
+<br />
+<br />
+<section class="categories">
+    <div class="container">
+        @if (TempData["basarili"] != null)
+        {
+            <p class="alert alert-success" id="successMessage">@TempData["basarili"]</p>
+        }
+        <div class="col-md-12">
+
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Görsel Adı</th>
+                        <th scope="col">Aktif</th>
+                        <th scope="col">Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        int sayac = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+
+                        sayac++;
+                        <tr>
+                            <td>@sayac</td>
+                            <td>@item.GorselAdi</td>
+                            @if (item.Aktif == true)
+                            {
+                                <td>@Html.ActionLink("Çıkar", "KaroselCikar", "Admin", new { id = item.Id }, new { @class = "btn btn-danger" })</td>
+                            }
+                            @if (item.Aktif == false)
+                            {
+                                <td>@Html.ActionLink("Ekle", "KaroselSec", "Admin", new { id = item.Id }, new { @class = "btn btn-success" })</td>
+                            }
+                            <td>@Html.ActionLink("Sil", "KaroselSil", "Admin", new { id = item.Id }, new { @class = "btn btn-info" })</td>
+
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+

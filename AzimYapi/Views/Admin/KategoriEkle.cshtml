@@ -1,0 +1,37 @@
+﻿@model AzimYapi.Models.KategoriModel.Kategori
+@{
+    ViewBag.Title = "KategoriEkle";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<section class="categories">
+    <div class="container">
+        <div class="col-md-6">
+            @if (TempData["KategoriEklemeBasarili"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["KategoriEklemeBasarili"]
+                </div>
+            }
+            @if (TempData["KategoriEklemeBasarisiz"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["KategoriEklemeBasarisiz"]
+                </div>
+            }
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @using (Html.BeginForm("KategoriEkle", "Admin", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <label>Kategori Adı</label>
+                    @Html.EditorFor(model => model.KategoriAd, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ürün Adı" } })
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Ekle</button>
+            }
+
+        </div>
+    </div>
+</section>
+
+

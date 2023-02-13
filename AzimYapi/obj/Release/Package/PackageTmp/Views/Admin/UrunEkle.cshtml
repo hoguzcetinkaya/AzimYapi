@@ -1,0 +1,63 @@
+﻿@model AzimYapi.Models.UrunlerModel.Urun
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<section class="categories">
+    <div class="container">
+        <div class="col-md-6">
+            @if (TempData["UrunEklemeBasarili"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["UrunEklemeBasarili"]
+                </div>
+            }
+            @if (TempData["UrunEklemeBasarisiz"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["UrunEklemeBasarisiz"]
+                </div>
+            }
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @using (Html.BeginForm("UrunEkle", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <label>Ürün Adı</label>
+
+                    @Html.EditorFor(model => model.UrunAdi, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ürün Adı" } })
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label>Ürün Fiyatı</label>
+
+                    @Html.EditorFor(model => model.fiyat, new { htmlAttributes = new { @type = "number", @class = "form-control", @placeholder = "Ürün Fiyatı" } })
+                </div>
+                <div class="form-group">
+                    <label>Stok Sayısı</label>
+
+                    @Html.EditorFor(model => model.stok, new { htmlAttributes = new { @type = "number", @class = "form-control", @placeholder = "Ürün Fiyatı" } })
+                </div>
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <select class="form-control" name="kategoriId">
+                        @foreach (var item in ViewBag.Kategoriler as IEnumerable<AzimYapi.Models.KategoriModel.Kategori>)
+                        {
+                            <option value="@item.Id">@item.KategoriAd</option>
+                        }
+
+                    </select>
+
+                </div><br />
+                <br />
+                <div class="form-group">
+                    <label>Ürün Resmi</label><br />
+                    <input type="file" name="urunGorselAdi" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Ekle</button>
+            }
+
+        </div>
+    </div>
+</section>

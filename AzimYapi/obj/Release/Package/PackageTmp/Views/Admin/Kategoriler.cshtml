@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AzimYapi.Models.KategoriModel.Kategori>
+@{
+    ViewBag.Title = "Kategoriler";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<section class="categories">
+    <div class="container">
+        @if (TempData["basarili"] != null)
+        {
+            <p class="alert alert-success" id="successMessage">@TempData["basarili"]</p>
+        }
+        <div class="col-md-12">
+
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Kategori</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        int sayac = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+
+                        sayac++;
+                        <tr>
+                            <td>@sayac</td>
+                            <td>@item.KategoriAd</td>
+                            <td>
+                                @Html.ActionLink("Sil", "KategoriSil", "Admin", new { id = item.Id }, new { @class = "btn btn-info" })
+                        </td>
+                    </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+

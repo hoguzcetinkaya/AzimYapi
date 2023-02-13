@@ -1,0 +1,60 @@
+﻿@model IEnumerable<AzimYapi.Models.UrunlerModel.Urun>
+@{
+    ViewBag.Title = "Urunler";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<section class="categories">
+    <div class="container">
+        @if (TempData["basarili"] != null)
+        {
+            <p class="alert alert-success" id="successMessage">@TempData["basarili"]</p>
+        }
+        <div class="col-md-12">
+
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ürün</th>
+                        <th scope="col">Fiyat</th>
+                        <th scope="col">Stok</th>
+                        <th scope="col">Favori</th>
+                        <th scope="col">Ürün Sil</th>
+                        <th scope="col">Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    @{
+                        int sayac = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        
+                        sayac++;
+                        <tr>
+                            <td>@sayac</td>
+                            <td>@item.UrunAdi</td>
+                            <td>@item.fiyat</td>
+                            <td>@item.stok</td>
+                            @if (item.enCokSatan == true)
+                            {
+                                <td>@Html.ActionLink("Çıkar", "EnCokSatanCikar", "Admin", new { id = item.Id }, new { @class = "btn btn-danger" })</td>
+                            }
+                            @if (item.enCokSatan == false)
+                            {
+                                <td>@Html.ActionLink("Ekle", "EnCokSatanEkle", "Admin", new { id = item.Id }, new { @class = "btn btn-success" })</td>
+                            }
+                            <td>@Html.ActionLink("Sil", "UrunSil", "Admin", new { id = item.Id }, new { @class = "btn btn-info" })</td>
+                            <td>@Html.ActionLink("Güncelle", "UrunGuncelle", "Admin", new { id = item.Id , ad=item.UrunAdi }, new { @class = "btn btn-info" })</td>
+                            
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
