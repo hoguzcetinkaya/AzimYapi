@@ -96,3 +96,5 @@ D:\VisualStudioExamples\AzimYapi\AzimYapi\obj\Release\AzimYapi.csproj.CoreCompil
 D:\VisualStudioExamples\AzimYapi\AzimYapi\obj\Release\AzimYapi.csproj.CopyComplete
 D:\VisualStudioExamples\AzimYapi\AzimYapi\obj\Release\AzimYapi.dll
 D:\VisualStudioExamples\AzimYapi\AzimYapi\obj\Release\AzimYapi.pdb
+D:\VisualStudioExamples\AzimYapi\AzimYapi\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\VisualStudioExamples\AzimYapi\AzimYapi\bin\Microsoft.Owin.Host.SystemWeb.xml

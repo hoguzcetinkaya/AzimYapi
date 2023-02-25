@@ -96,3 +96,5 @@ D:\VisualStudioExamples\AzimYapi\AzimYapi\bin\Microsoft.Owin.xml
 D:\VisualStudioExamples\AzimYapi\AzimYapi\bin\Microsoft.Owin.Security.xml
 D:\VisualStudioExamples\AzimYapi\AzimYapi\bin\Microsoft.Owin.Security.Cookies.xml
 D:\VisualStudioExamples\AzimYapi\AzimYapi\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VisualStudioExamples\AzimYapi\AzimYapi\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\VisualStudioExamples\AzimYapi\AzimYapi\bin\Microsoft.Owin.Host.SystemWeb.xml

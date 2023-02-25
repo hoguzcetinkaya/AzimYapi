@@ -15,6 +15,8 @@ namespace AzimYapi.Controllers
             var urunler = db.Urun.Where(x => x.urunGorselAdi != null).ToList();
             List<UrunlerModel.Urun> enCokSatanlarList = new List<UrunlerModel.Urun>();
 
+            
+
             var enCokSatanlar = db.Urun.Where(x => x.enCokSatan == true).ToList();
             if (enCokSatanlar.Count() == 5)
             {
@@ -78,8 +80,18 @@ namespace AzimYapi.Controllers
         [HttpGet]
         public ActionResult Iletisim()
         {
-            ViewBag.Message = "Your contact page.";
 
+            // LOGO GÖNDERİMİ
+
+            var logo = db.Gorsel.FirstOrDefault(x => x.Aktif == true && x.GorselTuru == "logo");
+            if (logo != null)
+            {
+                ViewBag.Logo = logo.GorselAdi;
+            }
+            else
+            {
+                ViewBag.Logo = "0";
+            }
             return View();
         }
     }

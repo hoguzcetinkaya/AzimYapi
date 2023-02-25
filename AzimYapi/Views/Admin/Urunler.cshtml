@@ -15,10 +15,9 @@
             <table class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col"></th>
                         <th scope="col">Ürün</th>
-                        <th scope="col">Fiyat</th>
-                        <th scope="col">Stok</th>
+                        @*<th scope="col">Fiyat</th>*@
                         <th scope="col">Favori</th>
                         <th scope="col">Ürün Sil</th>
                         <th scope="col">Güncelle</th>
@@ -36,8 +35,7 @@
                         <tr>
                             <td>@sayac</td>
                             <td>@item.UrunAdi</td>
-                            <td>@item.fiyat</td>
-                            <td>@item.stok</td>
+                            @*<td>@item.fiyat</td>*@
                             @if (item.enCokSatan == true)
                             {
                                 <td>@Html.ActionLink("Çıkar", "EnCokSatanCikar", "Admin", new { id = item.Id }, new { @class = "btn btn-danger" })</td>

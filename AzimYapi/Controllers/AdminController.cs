@@ -1,6 +1,10 @@
 ﻿using AzimYapi.Db;
+using AzimYapi.Identity;
 using AzimYapi.Models;
 using AzimYapi.Models.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,11 +14,79 @@ using System.Web.Mvc;
 
 namespace AzimYapi.Controllers
 {
+    [Authorize(Users = "beraavsar,fazliavsar,mehmetatigan")]
     public class AdminController : Controller
     {
         DataContext db = new DataContext();
 
+        private UserManager<ApplicationUser> userManager;
+        public AdminController()
+        {
+            userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new IdentityContext()));
+
+        }
+        [AllowAnonymous]
+        [HttpGet]
         public ActionResult Index()
+        {
+            if(User.Identity.IsAuthenticated)//kullanıcı giriş yaptıysa ve çıkış yapmadıysa ürünlere yönlendir
+            {
+                return RedirectToAction("Urunler");
+            }
+                
+            var list = userManager.Users.ToList();
+
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Index(IdentityModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var kullanici = userManager.Find(model.KullaniciAdi, model.Sifre);
+                if (kullanici != null)
+                {
+                    var authManager = HttpContext.GetOwinContext().Authentication;// kullanıcı girdi çıktılarını yönetmek için
+                    var identityclaims = userManager.CreateIdentity(kullanici, "ApplicationCookie"); // kullanıcı için cookie oluşturmak için
+                    var authProperties = new AuthenticationProperties();
+                    authProperties.IsPersistent = true;//hatırlamak için
+                    authManager.SignOut();
+                    authManager.SignIn(authProperties, identityclaims);
+                    return RedirectToAction("Urunler");
+                }
+                else
+                {
+                    var adminSayi = userManager.Users.ToList();
+                    if (adminSayi.Count() >= 3)
+                    {
+                        return View(model);
+                    }
+                    else
+                    {
+                        ApplicationUser akulanici = new ApplicationUser();
+                        akulanici.UserName = model.KullaniciAdi;
+                        akulanici.sifre = model.Sifre;
+
+
+                        IdentityResult result = userManager.Create(akulanici, model.Sifre);
+                        if (result.Succeeded)
+                        {
+                            TempData["kayitBasarili"] = "Kayıt işlemi başarıyla tamamlanmıştır giriş yapabilirsiniz";
+                            return RedirectToAction("Index");
+                        }
+                    }
+
+
+
+                }
+            }
+            return View(model);
+        }
+        // URUN İŞLEMLERİ
+        [HttpGet]
+        public ActionResult UrunEkle()
         {
             var logo = db.Gorsel.FirstOrDefault(x => x.Aktif == true && x.GorselTuru == "logo");
             if (logo != null)
@@ -25,14 +97,6 @@ namespace AzimYapi.Controllers
             {
                 ViewBag.Logo = "0";
             }
-            return View();
-        }
-
-
-        // URUN İŞLEMLERİ
-        [HttpGet]
-        public ActionResult UrunEkle()
-        {
             var kategoriler = db.Kategori.ToList();
             if (kategoriler != null)
             {
@@ -51,7 +115,7 @@ namespace AzimYapi.Controllers
 
                     string dosyaAdi = Path.GetFileName(Request.Files[0].FileName);
                     string uzanti = Path.GetExtension(Request.Files[0].FileName);
-                    string yol = "~/resimler/" + dosyaAdi;
+                    string yol = "~/Content/img/" + dosyaAdi;
                     Request.Files[0].SaveAs(Server.MapPath(yol));
 
                     var urun = new UrunlerModel.Urun();
@@ -84,6 +148,16 @@ namespace AzimYapi.Controllers
         [HttpGet]
         public ActionResult Urunler()
         {
+            var logo = db.Gorsel.FirstOrDefault(x => x.Aktif == true && x.GorselTuru == "logo");
+            if (logo != null)
+            {
+                ViewBag.Logo = logo.GorselAdi;
+            }
+            else
+            {
+                ViewBag.Logo = "0";
+            }
+
             var urunler = db.Urun.Where(x => x.urunGorselAdi != null).ToList();
             var kategoriler = new List<KategoriModel.Kategori>();
             foreach (var item in urunler)
@@ -104,7 +178,7 @@ namespace AzimYapi.Controllers
             return View(urunler);
         }
 
-        [HttpGet]
+        [HttpGet]   
         public ActionResult EnCokSatanEkle(int id)
         {
             var urun = db.Urun.FirstOrDefault(x => x.Id == id);
@@ -150,10 +224,36 @@ namespace AzimYapi.Controllers
             var urun = db.Urun.FirstOrDefault(x => x.Id == id);
             if (urun != null)
             {
-                db.Urun.Remove(urun);
+                string dosyaAdi = urun.urunGorselAdi;
+                var folderPath = Server.MapPath("~/Content/img/");
+                var imagePath = folderPath + dosyaAdi;
+                try
+                {
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                        Console.WriteLine("Dosya başarıyla silindi.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Dosya bulunamadı.");
+                    }
+                }
+                catch (System.IO.IOException e)
+                {
+                    Console.WriteLine("Dosya, başka bir işlem tarafından kullanılıyor.");
+                }
+                catch (System.UnauthorizedAccessException e)
+                {
+                    Console.WriteLine("Bu işlem için gerekli izne sahip değilsiniz.");
+                }
 
+
+
+                db.Urun.Remove(urun);
                 db.SaveChanges();
                 TempData["basarili"] = "İşlem Başarılı";
+
                 return RedirectToAction("Urunler");
 
             }
@@ -167,10 +267,18 @@ namespace AzimYapi.Controllers
         [HttpGet]
         public ActionResult UrunGuncelle(int id, string ad)
         {
+            var logo = db.Gorsel.FirstOrDefault(x => x.Aktif == true && x.GorselTuru == "logo");
+            if (logo != null)
+            {
+                ViewBag.Logo = logo.GorselAdi;
+            }
+            else
+            {
+                ViewBag.Logo = "0";
+            }
             var urun = db.Urun.FirstOrDefault(x => x.Id == id);
             return View(urun);
         }
-
         [HttpPost]
         public ActionResult UrunGuncelle(UrunlerModel.Urun model)
         {
@@ -182,7 +290,7 @@ namespace AzimYapi.Controllers
                 string dosyaAdi = Path.GetFileName(Request.Files[0].FileName);
                 if (urun.urunGorselAdi != dosyaAdi)
                 {
-                    string yol = "~/resimler/" + dosyaAdi;
+                    string yol = "~/Content/img/" + dosyaAdi;
                     Request.Files[0].SaveAs(Server.MapPath(yol));
                     urun.urunGorselAdi = dosyaAdi;
                 }
@@ -200,6 +308,15 @@ namespace AzimYapi.Controllers
         [HttpGet]
         public ActionResult KategoriEkle()
         {
+            var logo = db.Gorsel.FirstOrDefault(x => x.Aktif == true && x.GorselTuru == "logo");
+            if (logo != null)
+            {
+                ViewBag.Logo = logo.GorselAdi;
+            }
+            else
+            {
+                ViewBag.Logo = "0";
+            }
             return View();
         }
         [HttpPost]
@@ -225,6 +342,15 @@ namespace AzimYapi.Controllers
         [HttpGet]
         public ActionResult Kategoriler()
         {
+            var logo = db.Gorsel.FirstOrDefault(x => x.Aktif == true && x.GorselTuru == "logo");
+            if (logo != null)
+            {
+                ViewBag.Logo = logo.GorselAdi;
+            }
+            else
+            {
+                ViewBag.Logo = "0";
+            }
             var kategoriler = db.Kategori.ToList();
             return View(kategoriler);
         }
@@ -239,6 +365,29 @@ namespace AzimYapi.Controllers
                 var KategoriyeAitUrunler = db.Urun.Where(x => x.KategoriId == id).ToList();
                 foreach (var item in KategoriyeAitUrunler)
                 {
+                    string dosyaAdi = item.urunGorselAdi;
+                    var folderPath = Server.MapPath("~/Content/img/");
+                    var imagePath = folderPath + dosyaAdi;
+                    try
+                    {
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                            Console.WriteLine("Dosya başarıyla silindi.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Dosya bulunamadı.");
+                        }
+                    }
+                    catch (System.IO.IOException e)
+                    {
+                        Console.WriteLine("Dosya, başka bir işlem tarafından kullanılıyor.");
+                    }
+                    catch (System.UnauthorizedAccessException e)
+                    {
+                        Console.WriteLine("Bu işlem için gerekli izne sahip değilsiniz.");
+                    }
                     db.Urun.Remove(item);
                 }
                 db.SaveChanges();
@@ -257,12 +406,30 @@ namespace AzimYapi.Controllers
         // GÖRSEL İŞLEMLER
         public ActionResult Karosel()
         {
+            var logo = db.Gorsel.FirstOrDefault(x => x.Aktif == true && x.GorselTuru == "logo");
+            if (logo != null)
+            {
+                ViewBag.Logo = logo.GorselAdi;
+            }
+            else
+            {
+                ViewBag.Logo = "0";
+            }
             var gorselKarosel = db.Gorsel.Where(x => x.GorselTuru == "karosel").ToList();
             return View(gorselKarosel);
         }
 
         public ActionResult GorselEkle(GorselModel.Gorsel model)
         {
+            var logo = db.Gorsel.FirstOrDefault(x => x.Aktif == true && x.GorselTuru == "logo");
+            if (logo != null)
+            {
+                ViewBag.Logo = logo.GorselAdi;
+            }
+            else
+            {
+                ViewBag.Logo = "0";
+            }
             if (Request.Files.Count > 0)
             {
 
@@ -275,13 +442,13 @@ namespace AzimYapi.Controllers
                     if (model.GorselTuru == "karosel")
                     {
                         gorsel.GorselTuru = "karosel";
-                        string yol = "~/resimler/karosel/" + dosyaAdi;
+                        string yol = "~/Content/img/karosel/" + dosyaAdi;
                         Request.Files[0].SaveAs(Server.MapPath(yol));
                     }
                     if (model.GorselTuru == "logo")
                     {
                         gorsel.GorselTuru = "logo";
-                        string yol = "~/resimler/logo/" + dosyaAdi;
+                        string yol = "~/Content/img/logo/" + dosyaAdi;
                         Request.Files[0].SaveAs(Server.MapPath(yol));
                     }
                     gorsel.GorselAdi = dosyaAdi;
@@ -330,7 +497,15 @@ namespace AzimYapi.Controllers
         [HttpGet]
         public ActionResult KaroselSec(int id)
         {
-
+            var logo = db.Gorsel.FirstOrDefault(x => x.Aktif == true && x.GorselTuru == "logo");
+            if (logo != null)
+            {
+                ViewBag.Logo = logo.GorselAdi;
+            }
+            else
+            {
+                ViewBag.Logo = "0";
+            }
             var karosel = db.Gorsel.FirstOrDefault(x => x.Id == id);
             if (karosel != null)
             {
@@ -374,6 +549,32 @@ namespace AzimYapi.Controllers
             var karosel = db.Gorsel.FirstOrDefault(x => x.Id == id);
             if (karosel != null)
             {
+                string dosyaAdi = karosel.GorselAdi;
+                var folderPath = Server.MapPath("~/Content/img/karosel/");
+                var imagePath = folderPath + dosyaAdi;
+                try
+                {
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                        Console.WriteLine("Dosya başarıyla silindi.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Dosya bulunamadı.");
+                    }
+                }
+                catch (System.IO.IOException e)
+                {
+                    Console.WriteLine("Dosya, başka bir işlem tarafından kullanılıyor.");
+                }
+                catch (System.UnauthorizedAccessException e)
+                {
+                    Console.WriteLine("Bu işlem için gerekli izne sahip değilsiniz.");
+                }
+
+
+
                 db.Gorsel.Remove(karosel);
                 db.SaveChanges();
                 TempData["basarili"] = "İşlem Başarılı";
@@ -389,6 +590,15 @@ namespace AzimYapi.Controllers
         // LOGO İŞLEMLERİ
         public ActionResult Logo()
         {
+            var logo = db.Gorsel.FirstOrDefault(x => x.Aktif == true && x.GorselTuru == "logo");
+            if (logo != null)
+            {
+                ViewBag.Logo = logo.GorselAdi;
+            }
+            else
+            {
+                ViewBag.Logo = "0";
+            }
             var gorselLogo = db.Gorsel.Where(x => x.GorselTuru == "logo").ToList();
             return View(gorselLogo);
         }
@@ -396,8 +606,18 @@ namespace AzimYapi.Controllers
         [HttpGet]
         public ActionResult LogoSec(int id)
         {
-            var aktifLogo = db.Gorsel.Where(x => x.Aktif == true && x.GorselTuru=="logo").ToList();
-            if(aktifLogo.Count()>=1)
+            var logoResim = db.Gorsel.FirstOrDefault(x => x.Aktif == true && x.GorselTuru == "logo");
+            if (logoResim != null)
+            {
+                ViewBag.Logo = logoResim.GorselAdi;
+            }
+            else
+            {
+                ViewBag.Logo = "0";
+            }
+
+            var aktifLogo = db.Gorsel.Where(x => x.Aktif == true && x.GorselTuru == "logo").ToList();
+            if (aktifLogo.Count() >= 1)
             {
                 TempData["basarisiz"] = "Aktif logoyu kaldırmanız gerekmektedir";
                 return RedirectToAction("Logo");
@@ -420,7 +640,7 @@ namespace AzimYapi.Controllers
 
                 }
             }
-            
+
         }
 
         [HttpGet]
@@ -442,6 +662,58 @@ namespace AzimYapi.Controllers
                 return RedirectToAction("Logo");
 
             }
+        }
+
+        [HttpGet]
+        public ActionResult LogoSil(int id)
+        {
+            var logo = db.Gorsel.FirstOrDefault(x => x.Id == id);
+            if (logo != null)
+            {
+                string dosyaAdi = logo.GorselAdi;
+                var folderPath = Server.MapPath("~/Content/img/logo/");
+                var imagePath = folderPath + dosyaAdi;
+                try
+                {
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                        Console.WriteLine("Dosya başarıyla silindi.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Dosya bulunamadı.");
+                    }
+                }
+                catch (System.IO.IOException e)
+                {
+                    Console.WriteLine("Dosya, başka bir işlem tarafından kullanılıyor.");
+                }
+                catch (System.UnauthorizedAccessException e)
+                {
+                    Console.WriteLine("Bu işlem için gerekli izne sahip değilsiniz.");
+                }
+
+
+
+                db.Gorsel.Remove(logo);
+                db.SaveChanges();
+                TempData["basarili"] = "İşlem Başarılı";
+                return RedirectToAction("Logo");
+            }
+            else
+            {
+                TempData["basarisiz"] = "İşlem başarısız";
+                return RedirectToAction("Karosel");
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult Cikis()
+        {
+            var authManager = HttpContext.GetOwinContext().Authentication;
+            authManager.SignOut();
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,6 +1,47 @@
-﻿@model AzimYapi.Models.UrunlerModel.Urun
+﻿@model AzimYapi.Models.IdentityModel
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Admin.cshtml";
+    Layout = null;
 }
-<h1>index admin</h1>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Azim Yapı - Giriş</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
+</head>
+<body class="text-center col-md-12">
+    <div class="row">
+        <div class="mx-auto col-md-4">
+            @using (Html.BeginForm())
+            {
+                <h1 class="h3 mb-3 font-weight-normal">Azim Yapı</h1>
+                <label for="kadi" class="sr-only">Kullanıcı Adınız</label>
+                <input name="KullaniciAdi" type="text" id="kadi" class="form-control" placeholder="Kullanıcı Adı" required autofocus>
+                <label for="ksifre" class="sr-only">Şifreniz</label>
+                <input name="Sifre" type="password" id="ksifre" class="form-control" placeholder="Şifre" required>
+                <br />  
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Giriş Yap</button>
+            }
+            @if (TempData["kayitBasarili"] != null)
+            {
+                <p class="alert alert-success" id="successMessage">@TempData["kayitBasarili"]</p>
+            }
+        </div>
+        
+
+    </div>
+</body>
+</html>

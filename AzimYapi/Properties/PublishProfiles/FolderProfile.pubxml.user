@@ -5,19 +5,20 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\husey\OneDrive\Masaüstü\AzimYapiWebSite</_PublishTargetUrl>
+    <History>True|2023-02-25T13:58:58.9249728Z;True|2023-02-25T15:35:39.3671969+03:00;True|2023-02-24T20:02:17.4038403+03:00;True|2023-02-17T23:31:39.9544150+03:00;True|2023-02-17T23:07:58.6840271+03:00;True|2023-02-17T22:32:56.7713346+03:00;False|2023-02-17T22:32:15.0411600+03:00;True|2023-02-13T16:08:59.8096932+03:00;True|2023-02-13T16:06:58.7157041+03:00;True|2023-02-13T16:05:36.1129196+03:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>09/10/2013 16:29:20</publishTime>
+      <publishTime>10/09/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.pdb">
-      <publishTime>09/10/2013 16:29:20</publishTime>
+      <publishTime>10/09/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/AzimYapi.dll">
-      <publishTime>02/11/2023 21:50:59</publishTime>
+      <publishTime>02/25/2023 16:58:56</publishTime>
     </File>
     <File Include="bin/AzimYapi.pdb">
-      <publishTime>02/11/2023 21:50:59</publishTime>
+      <publishTime>02/25/2023 16:58:56</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>02/25/2014 03:34:42</publishTime>
@@ -35,10 +36,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/25/2019 13:57:50</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
-      <publishTime>09/05/2018 16:10:50</publishTime>
+      <publishTime>05/09/2018 16:10:50</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.dll">
-      <publishTime>02/13/2015 15:16:30</publishTime>
+      <publishTime>11/05/2022 02:31:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>11/05/2022 02:31:40</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
       <publishTime>02/13/2015 15:16:38</publishTime>
@@ -98,10 +102,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/08/2018 12:09:42</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
-      <publishTime>12/05/2017 09:36:44</publishTime>
+      <publishTime>05/12/2017 09:36:44</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
-      <publishTime>12/05/2017 09:36:44</publishTime>
+      <publishTime>05/12/2017 09:36:44</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Managed.Core.targets">
       <publishTime>08/08/2018 12:09:42</publishTime>
@@ -110,85 +114,85 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/08/2018 12:09:42</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Win32.Primitives.dll">
-      <publishTime>11/05/2016 18:55:32</publishTime>
+      <publishTime>05/11/2016 18:55:32</publishTime>
     </File>
     <File Include="bin/roslyn/System.AppContext.dll">
-      <publishTime>11/05/2016 18:55:34</publishTime>
+      <publishTime>05/11/2016 18:55:34</publishTime>
     </File>
     <File Include="bin/roslyn/System.Collections.Immutable.dll">
       <publishTime>05/16/2018 03:29:34</publishTime>
     </File>
     <File Include="bin/roslyn/System.Console.dll">
-      <publishTime>11/05/2016 18:55:48</publishTime>
+      <publishTime>05/11/2016 18:55:48</publishTime>
     </File>
     <File Include="bin/roslyn/System.Diagnostics.DiagnosticSource.dll">
-      <publishTime>11/05/2016 18:55:52</publishTime>
+      <publishTime>05/11/2016 18:55:52</publishTime>
     </File>
     <File Include="bin/roslyn/System.Diagnostics.FileVersionInfo.dll">
-      <publishTime>11/05/2016 18:55:56</publishTime>
+      <publishTime>05/11/2016 18:55:56</publishTime>
     </File>
     <File Include="bin/roslyn/System.Diagnostics.StackTrace.dll">
-      <publishTime>11/05/2016 18:55:52</publishTime>
+      <publishTime>05/11/2016 18:55:52</publishTime>
     </File>
     <File Include="bin/roslyn/System.Globalization.Calendars.dll">
-      <publishTime>11/05/2016 18:56:02</publishTime>
+      <publishTime>05/11/2016 18:56:02</publishTime>
     </File>
     <File Include="bin/roslyn/System.IO.Compression.dll">
-      <publishTime>11/05/2016 18:56:08</publishTime>
+      <publishTime>05/11/2016 18:56:08</publishTime>
     </File>
     <File Include="bin/roslyn/System.IO.Compression.ZipFile.dll">
-      <publishTime>11/05/2016 18:56:04</publishTime>
+      <publishTime>05/11/2016 18:56:04</publishTime>
     </File>
     <File Include="bin/roslyn/System.IO.FileSystem.dll">
-      <publishTime>11/05/2016 18:56:08</publishTime>
+      <publishTime>05/11/2016 18:56:08</publishTime>
     </File>
     <File Include="bin/roslyn/System.IO.FileSystem.Primitives.dll">
-      <publishTime>11/05/2016 18:56:08</publishTime>
+      <publishTime>05/11/2016 18:56:08</publishTime>
     </File>
     <File Include="bin/roslyn/System.Net.Http.dll">
-      <publishTime>11/05/2016 18:56:30</publishTime>
+      <publishTime>05/11/2016 18:56:30</publishTime>
     </File>
     <File Include="bin/roslyn/System.Net.Sockets.dll">
-      <publishTime>11/05/2016 18:56:34</publishTime>
+      <publishTime>05/11/2016 18:56:34</publishTime>
     </File>
     <File Include="bin/roslyn/System.Reflection.Metadata.dll">
       <publishTime>05/16/2018 03:29:44</publishTime>
     </File>
     <File Include="bin/roslyn/System.Runtime.InteropServices.RuntimeInformation.dll">
-      <publishTime>11/05/2016 18:57:00</publishTime>
+      <publishTime>05/11/2016 18:57:00</publishTime>
     </File>
     <File Include="bin/roslyn/System.Security.Cryptography.Algorithms.dll">
-      <publishTime>11/05/2016 18:57:14</publishTime>
+      <publishTime>05/11/2016 18:57:14</publishTime>
     </File>
     <File Include="bin/roslyn/System.Security.Cryptography.Encoding.dll">
-      <publishTime>11/05/2016 18:57:08</publishTime>
+      <publishTime>05/11/2016 18:57:08</publishTime>
     </File>
     <File Include="bin/roslyn/System.Security.Cryptography.Primitives.dll">
-      <publishTime>11/05/2016 18:57:18</publishTime>
+      <publishTime>05/11/2016 18:57:18</publishTime>
     </File>
     <File Include="bin/roslyn/System.Security.Cryptography.X509Certificates.dll">
-      <publishTime>11/05/2016 18:57:18</publishTime>
+      <publishTime>05/11/2016 18:57:18</publishTime>
     </File>
     <File Include="bin/roslyn/System.Text.Encoding.CodePages.dll">
-      <publishTime>11/05/2016 18:57:20</publishTime>
+      <publishTime>05/11/2016 18:57:20</publishTime>
     </File>
     <File Include="bin/roslyn/System.Threading.Tasks.Extensions.dll">
-      <publishTime>11/05/2016 18:57:24</publishTime>
+      <publishTime>05/11/2016 18:57:24</publishTime>
     </File>
     <File Include="bin/roslyn/System.ValueTuple.dll">
-      <publishTime>11/05/2016 18:57:30</publishTime>
+      <publishTime>05/11/2016 18:57:30</publishTime>
     </File>
     <File Include="bin/roslyn/System.Xml.ReaderWriter.dll">
-      <publishTime>11/05/2016 18:57:36</publishTime>
+      <publishTime>05/11/2016 18:57:36</publishTime>
     </File>
     <File Include="bin/roslyn/System.Xml.XmlDocument.dll">
-      <publishTime>11/05/2016 18:57:34</publishTime>
+      <publishTime>05/11/2016 18:57:34</publishTime>
     </File>
     <File Include="bin/roslyn/System.Xml.XPath.dll">
-      <publishTime>11/05/2016 18:57:40</publishTime>
+      <publishTime>05/11/2016 18:57:40</publishTime>
     </File>
     <File Include="bin/roslyn/System.Xml.XPath.XDocument.dll">
-      <publishTime>11/05/2016 18:57:34</publishTime>
+      <publishTime>05/11/2016 18:57:34</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe">
       <publishTime>08/08/2018 05:38:48</publishTime>
@@ -212,7 +216,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/28/2018 12:59:46</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>02/11/2014 14:26:04</publishTime>
+      <publishTime>11/02/2014 14:26:04</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
       <publishTime>11/28/2018 13:00:12</publishTime>
@@ -252,6 +256,129 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Content/bootstrap.min.css.map">
       <publishTime>01/29/2023 23:02:47</publishTime>
+    </File>
+    <File Include="Content/css/bootstrap.min.css">
+      <publishTime>01/29/2023 23:04:07</publishTime>
+    </File>
+    <File Include="Content/css/elegant-icons.css">
+      <publishTime>01/29/2023 23:04:07</publishTime>
+    </File>
+    <File Include="Content/css/font-awesome.css">
+      <publishTime>07/12/2017 20:44:03</publishTime>
+    </File>
+    <File Include="Content/css/font-awesome.min.css">
+      <publishTime>07/12/2017 20:44:04</publishTime>
+    </File>
+    <File Include="Content/css/jquery-ui.min.css">
+      <publishTime>01/29/2023 23:04:08</publishTime>
+    </File>
+    <File Include="Content/css/nice-select.css">
+      <publishTime>01/29/2023 23:04:08</publishTime>
+    </File>
+    <File Include="Content/css/owl.carousel.min.css">
+      <publishTime>01/29/2023 23:04:08</publishTime>
+    </File>
+    <File Include="Content/css/slicknav.min.css">
+      <publishTime>01/29/2023 23:04:08</publishTime>
+    </File>
+    <File Include="Content/css/style.css">
+      <publishTime>02/22/2023 13:36:36</publishTime>
+    </File>
+    <File Include="Content/css/style2.css">
+      <publishTime>02/22/2023 13:50:42</publishTime>
+    </File>
+    <File Include="Content/img/damlamaHortum2.jpg">
+      <publishTime>02/11/2023 18:25:55</publishTime>
+    </File>
+    <File Include="Content/img/karosel/azimYapi.jpg">
+      <publishTime>02/17/2023 22:27:10</publishTime>
+    </File>
+    <File Include="Content/img/karosel/azimYapi2.jpg">
+      <publishTime>02/17/2023 22:27:18</publishTime>
+    </File>
+    <File Include="Content/img/karosel/banner.jpg">
+      <publishTime>02/11/2023 18:09:25</publishTime>
+    </File>
+    <File Include="Content/img/karosel/damlamaHortum.jpeg">
+      <publishTime>02/17/2023 22:27:22</publishTime>
+    </File>
+    <File Include="Content/img/logo/azimLogo.png">
+      <publishTime>02/17/2023 23:30:33</publishTime>
+    </File>
+    <File Include="Content/img/logo/ffffff.jpg">
+      <publishTime>02/25/2023 16:58:39</publishTime>
+    </File>
+    <File Include="Content/img/logo/logo2.png">
+      <publishTime>02/11/2023 18:37:14</publishTime>
+    </File>
+    <File Include="Content/img/markalar/driplantis.jpg">
+      <publishTime>02/17/2023 23:28:25</publishTime>
+    </File>
+    <File Include="Content/img/markalar/dyo.jpg">
+      <publishTime>02/17/2023 23:28:31</publishTime>
+    </File>
+    <File Include="Content/img/markalar/firat.png">
+      <publishTime>02/17/2023 23:26:03</publishTime>
+    </File>
+    <File Include="Content/img/markalar/formul.jpg">
+      <publishTime>02/17/2023 23:28:02</publishTime>
+    </File>
+    <File Include="Content/img/markalar/izeltas.jpg">
+      <publishTime>02/17/2023 23:27:52</publishTime>
+    </File>
+    <File Include="Content/img/markalar/kalde.jpg">
+      <publishTime>02/17/2023 23:26:24</publishTime>
+    </File>
+    <File Include="Content/img/markalar/magmaweld.jpg">
+      <publishTime>02/17/2023 23:28:18</publishTime>
+    </File>
+    <File Include="Content/img/markalar/marshall.jpg">
+      <publishTime>02/17/2023 23:45:55</publishTime>
+    </File>
+    <File Include="Content/img/markalar/meridyen.jpg">
+      <publishTime>02/17/2023 23:26:46</publishTime>
+    </File>
+    <File Include="Content/img/markalar/meridyen.png">
+      <publishTime>02/17/2023 23:27:38</publishTime>
+    </File>
+    <File Include="Content/img/markalar/selsil.jpg">
+      <publishTime>02/17/2023 23:28:09</publishTime>
+    </File>
+    <File Include="Content/markalar/driplantis.jpg">
+      <publishTime>02/17/2023 23:07:17</publishTime>
+    </File>
+    <File Include="Content/markalar/dyo.jpg">
+      <publishTime>02/17/2023 23:07:17</publishTime>
+    </File>
+    <File Include="Content/markalar/firat.jpg">
+      <publishTime>02/17/2023 23:07:17</publishTime>
+    </File>
+    <File Include="Content/markalar/firat.png">
+      <publishTime>02/17/2023 23:07:17</publishTime>
+    </File>
+    <File Include="Content/markalar/formul.jpg">
+      <publishTime>02/17/2023 23:07:17</publishTime>
+    </File>
+    <File Include="Content/markalar/izeltas.jpg">
+      <publishTime>02/17/2023 23:07:17</publishTime>
+    </File>
+    <File Include="Content/markalar/kalde.jpg">
+      <publishTime>02/17/2023 23:07:17</publishTime>
+    </File>
+    <File Include="Content/markalar/magmaweld.jpg">
+      <publishTime>02/17/2023 23:07:17</publishTime>
+    </File>
+    <File Include="Content/markalar/marshall.jpg">
+      <publishTime>02/17/2023 23:07:17</publishTime>
+    </File>
+    <File Include="Content/markalar/meridyen.jpg">
+      <publishTime>02/17/2023 23:07:17</publishTime>
+    </File>
+    <File Include="Content/markalar/meridyen.png">
+      <publishTime>02/17/2023 23:07:17</publishTime>
+    </File>
+    <File Include="Content/markalar/selsil.jpg">
+      <publishTime>02/17/2023 23:07:17</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>01/29/2023 23:02:43</publishTime>
@@ -313,11 +440,35 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
       <publishTime>01/29/2023 23:02:51</publishTime>
     </File>
+    <File Include="Scripts/js/bootstrap.min.js">
+      <publishTime>01/29/2023 23:04:10</publishTime>
+    </File>
+    <File Include="Scripts/js/jquery-3.3.1.min.js">
+      <publishTime>01/29/2023 23:04:10</publishTime>
+    </File>
+    <File Include="Scripts/js/jquery-ui.min.js">
+      <publishTime>01/29/2023 23:04:10</publishTime>
+    </File>
+    <File Include="Scripts/js/jquery.nice-select.min.js">
+      <publishTime>01/29/2023 23:04:10</publishTime>
+    </File>
+    <File Include="Scripts/js/jquery.slicknav.js">
+      <publishTime>01/29/2023 23:04:10</publishTime>
+    </File>
+    <File Include="Scripts/js/main.js">
+      <publishTime>01/29/2023 23:04:10</publishTime>
+    </File>
+    <File Include="Scripts/js/mixitup.min.js">
+      <publishTime>01/29/2023 23:04:10</publishTime>
+    </File>
+    <File Include="Scripts/js/owl.carousel.min.js">
+      <publishTime>01/29/2023 23:04:10</publishTime>
+    </File>
     <File Include="Scripts/modernizr-2.8.3.js">
       <publishTime>01/29/2023 23:02:50</publishTime>
     </File>
     <File Include="Views/Admin/Index.cshtml">
-      <publishTime>01/30/2023 13:36:15</publishTime>
+      <publishTime>02/14/2023 20:06:57</publishTime>
     </File>
     <File Include="Views/Admin/Karosel.cshtml">
       <publishTime>02/05/2023 22:59:04</publishTime>
@@ -335,19 +486,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/05/2023 01:14:28</publishTime>
     </File>
     <File Include="Views/Admin/UrunGuncelle.cshtml">
-      <publishTime>02/03/2023 15:44:30</publishTime>
+      <publishTime>02/13/2023 15:00:05</publishTime>
     </File>
     <File Include="Views/Admin/Urunler.cshtml">
-      <publishTime>02/05/2023 02:10:39</publishTime>
+      <publishTime>02/17/2023 22:19:59</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>01/29/2023 23:02:43</publishTime>
     </File>
     <File Include="Views/Home/Iletisim.cshtml">
-      <publishTime>02/05/2023 17:33:45</publishTime>
+      <publishTime>02/22/2023 13:47:46</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>02/05/2023 23:32:36</publishTime>
+      <publishTime>02/22/2023 13:43:15</publishTime>
     </File>
     <File Include="Views/Home/Index2.cshtml">
       <publishTime>01/29/2023 23:26:58</publishTime>
@@ -356,19 +507,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/29/2023 23:02:43</publishTime>
     </File>
     <File Include="Views/Shared/_Admin.cshtml">
-      <publishTime>02/05/2023 23:26:32</publishTime>
+      <publishTime>02/22/2023 13:52:15</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>02/05/2023 23:32:00</publishTime>
+      <publishTime>02/22/2023 13:50:07</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>01/29/2023 23:02:43</publishTime>
+      <publishTime>02/25/2023 15:34:27</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>01/29/2023 23:02:43</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/11/2023 21:51:00</publishTime>
+      <publishTime>02/25/2023 16:56:50</publishTime>
     </File>
   </ItemGroup>
 </Project>
